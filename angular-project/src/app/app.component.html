@@ -1,1 +1,14 @@
-<app-password-generator></app-password-generator>
+<!-- <app-password-generator></app-password-generator> -->
+<!-- <app-cards [title]="posts[0].title" [imageUrl]="posts[0].imageUrl" [username]="posts[0].username" [content]="posts[0].content"></app-cards>
+<app-cards [title]="posts[1].title" [imageUrl]="posts[1].imageUrl" [username]="posts[1].username" [content]="posts[1].content"></app-cards>
+<app-cards [title]="posts[2].title" [imageUrl]="posts[2].imageUrl" [username]="posts[2].username" [content]="posts[2].content"></app-cards> -->
+
+<!-- We can do the above thing by using ngFor directive -->
+<!-- ngFor directive is implemented on any type of array if that array is implemented on same type of element -->
+<app-cards                 
+    *ngFor="let post of posts"                 
+    [title]="post.title"
+    [imageUrl]="post.imageUrl"
+    [username]="post.username"
+    [content]="post.content"
+></app-cards>                   <!-- ngFor Directive -->
