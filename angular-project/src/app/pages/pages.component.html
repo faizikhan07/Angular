@@ -1,0 +1,96 @@
+<nav>
+    <ul class="pagination">
+        <li 
+            class="page-item"
+            [ngClass]="{ disabled: currentPage === 0}"    
+        >
+            <a class="page-link" (click)="currentPage = currentPage - 1">Prev</a>
+        </li>
+        <ng-container *ngFor="let image of images; let i = index;">     <!-- NOTE: We cannot implement more than 1 structural directive on one element because combining different structural directive on same element can lead to unexpected results -->
+            <li 
+                class="page-item"
+                [ngClass]="{ active: i === currentPage }" 
+                *ngIf="checkWindowIndex(i)"
+            >
+                <a (click)="currentPage = i" class="page-link">{{ i + 1 }}</a>
+            </li>
+        </ng-container>
+        <li 
+            class="page-item"
+            [ngClass]="{disabled: currentPage === images.length-1 }"    
+        >
+            <a class="page-link" (click)="currentPage = currentPage + 1">Next</a>
+        </li>
+    </ul>
+</nav>
+<!-- 
+    ------------------------------
+    CUSTOM CLASS DIRECTIVE
+    ------------------------------
+-->
+<div>
+    <h4 [appClass]=" 'red' ">{{ images[currentPage].title}}</h4>
+    <img [src]="images[currentPage].url" alt=""/>
+</div>
+
+<!--
+    -------------------------------
+    NGSWITCH STRUCTURAL DIRECTIVE
+    -------------------------------
+-->
+<!-- <div [ngSwitch]="currentPage">                       
+    <div *ngSwitchCase="0">
+        Current Page is Zero
+    </div>
+    <div *ngSwitchCase="1">
+        Current Page is One
+    </div>
+    <div *ngSwitchCase="2">
+        Current Page is Two
+    </div>
+    <div *ngSwitchCase="3">
+        Current Page is Three
+    </div>
+    <div *ngSwitchCase="4">
+        Current Page is Four
+    </div>
+</div> -->
+
+<!--
+    There are so many ways to define ngClass directive 
+    ----------------
+    METHOD 1:
+    ----------------
+    ---------------------------
+    pages.component.ts file
+    ---------------------------
+    getClass() {
+        const classes = [];
+        if(something()) {
+            classes.push('active')
+        }
+        if (somethingElse()) {
+            classes.push('something');
+        }
+        if (yetAnotherCheck()) {
+            classes.push('check')
+        }
+        return classes;     // This array contains so many properties to be implemented on an element present in html file.
+    }
+    -----------------------------
+    pages.component.html
+    -----------------------------
+    <li 
+            class="page-item"
+            [ngClass]="getClass()"              // PROPERTY BINDING WITH 'ngClass' DIRECTIVE
+            *ngFor="let image of images; let i = index;"
+        >
+        <a class="page-link">{{ i + 1 }}</a>
+    </li>
+
+    NOTE: Bootstrap library only want li elements inside of ul element but we add div element. So 
+    instead of using div element, we can use ng-container element.
+    'ng-container' not creates a new html element but it executes whatever directives is inside it and 
+    whatever element is inside it.
+
+-->

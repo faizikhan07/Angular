@@ -26,4 +26,5 @@ export class AppComponent {
       content: 'I did this biking today'
     }
   ]
+  fontSizePx = 16;
 }

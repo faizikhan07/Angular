@@ -5,18 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PasswordGeneratorComponent } from './password-generator/password-generator.component';
 import { CardsComponent } from './cards/cards.component';
-import { TwoWayBindingComponent } from './two-way-binding/two-way-binding.component';
+import { FormsModule } from '@angular/forms';
+import { PagesComponent } from './pages/pages.component';
+import { ClassDirective } from './pages/class.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     PasswordGeneratorComponent,
     CardsComponent,
-    TwoWayBindingComponent
+    PagesComponent,
+    ClassDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
